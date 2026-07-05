@@ -1,2 +1,3 @@
 [tools]
 go = "1.27rc1"
+"go:golang.org/x/tools/gopls" = "v0.23.0-pre.1"
