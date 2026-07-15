@@ -3,7 +3,7 @@ package scope_test
 import (
 	"testing"
 
-	"github.com/joeycorry/ds/internal/testingutil"
+	"github.com/joeycorry/ds/internal/testingx"
 	"github.com/joeycorry/ds/scope"
 	"github.com/stretchr/testify/assert"
 )
@@ -11,7 +11,7 @@ import (
 func TestAlso(t *testing.T) {
 	t.Parallel()
 
-	testingutil.Extensions.T.RunParallel(t, "executes the action with the contained value", func(t *testing.T) {
+	testingx.RunParallel(t, "executes the action with the contained value", func(t *testing.T) {
 		input := 1
 		actCalled := false
 		act := func(value int) {
@@ -23,7 +23,7 @@ func TestAlso(t *testing.T) {
 		assert.True(t, actCalled)
 	})
 
-	testingutil.Extensions.T.RunParallel(t, "returns the contained value from the original scope after the action", func(t *testing.T) {
+	testingx.RunParallel(t, "returns the contained value from the original scope after the action", func(t *testing.T) {
 		input := new(1)
 
 		actual := scope.New(input).Also(func(value *int) {})
@@ -31,7 +31,7 @@ func TestAlso(t *testing.T) {
 		assert.Equal(t, input, actual)
 	})
 
-	testingutil.Extensions.T.RunParallel(t, "propagates changes made to contained pointers in the action", func(t *testing.T) {
+	testingx.RunParallel(t, "propagates changes made to contained pointers in the action", func(t *testing.T) {
 		input := 1
 
 		actual := scope.New(&input).Also(func(value *int) {
@@ -41,7 +41,7 @@ func TestAlso(t *testing.T) {
 		assert.Equal(t, 2, *actual)
 	})
 
-	testingutil.Extensions.T.RunParallel(t, "does not propagate changes made to contained non-pointers in the action", func(t *testing.T) {
+	testingx.RunParallel(t, "does not propagate changes made to contained non-pointers in the action", func(t *testing.T) {
 		input := 1
 
 		actual := scope.New(input).Also(func(value int) {
