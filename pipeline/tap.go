@@ -1,6 +1,6 @@
 package pipeline
 
-func (self Pipeline[T]) Tap(act func(T)) Pipeline[T] {
-	act(self.value)
+func (self Pipeline[T]) Tap(stage func(T)) Pipeline[T] {
+	stage(self.value)
 	return self
 }
