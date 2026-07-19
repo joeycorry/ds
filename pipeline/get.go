@@ -1,5 +1,5 @@
 package pipeline
 
-func (v Pipeline[T]) Get() T {
-	return v.value
+func (self Pipeline[T]) Get() T {
+	return self.value
 }
